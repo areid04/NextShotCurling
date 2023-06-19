@@ -17,7 +17,7 @@ Here's a rough outline for what I'll do for this project
 ## I. Collect data
 Worldcurling.org provides shot-by-shot diagrams for their matches, an incredibly valueable resource that I'll be using as data.
 Each image will be read into an OpenCV function that extracts stone posistions for that play, with the shot with a bold outline being the stone thrown.
-This "shot made" stone will be the feature that I'll want to derive, based on all other stones posistions. The stones will be stored in the format
+This "shot made" stone will be the feature that I'll want to derive, based on ~~all other stones posistions~~ zone location. The stones will be stored in the format
 
 **Other stone** n_x, **Other stone** n_y with n ranging from 1-15 with the stone that we'll be determine being **Made shot**x, **Made shot**y.
 
@@ -25,6 +25,12 @@ This "shot made" stone will be the feature that I'll want to derive, based on al
 Since the order in which inputs come in matters for regression models, I think this might be the biggest obsticle for this project. That is, thinking of a way to make the model _ _permuation-invarient_ _ or atleast fairly. 
 It shouldn't matter what order the stone's coordinates come in; stones exist in a space regardless of the previous stones posistion. [This](https://github.com/off99555/superkeras/blob/master/README.md) repo seems like it could be helpful in keeping this property.
 Alternatively, maybe sorting by largest / smallest could help? 
+
+UPDATE:
+Instead of tracking the absolute posistion of the stones, it might be easier to track how many stones are in certain areas? This does track relative posistion, which could be useful data. It also doesn't matter which stone is where, but rather having some sort of count.
+
+![ZoneDiagram](https://github.com/areid04/NextShotCurling/assets/114508072/b421f611-d06d-42fb-b0af-93ff2f955cf6)
+
 
 ## II. Train
 
