@@ -7,7 +7,7 @@ For those new to curling (described as 'chess on ice'), player's main objectives
 
 ## What this is, and what it isn't
 
-As some one who curls at the college level, I wanted to develop a tool that could help me make stronger decisions of what my next shot should be. Granted, I wouldnt have acsess to such a program when I'm on the ice... but as a learning tool and experiment, I think NextShotCurling could be an interesting aid. This project aims to answer the question *** can I determine what shot I should make, depending on the posistion of all the other stones in play? ***
+As some one who curls at the college level, I wanted to develop a tool that could help me make stronger decisions of what my next shot should be. Granted, I wouldnt have acsess to such a program when I'm on the ice... but as a learning tool and experiment, I think NextShotCurling could be an interesting aid. This project aims to answer the question **can I determine what shot I should make, depending on the posistion of all the other stones in play?**
 
 This isn't (yet!) a replacement for skill or knowledge of the game, and predictions of shots don't factor in your level of play, your own accuracy, or ability of sweepers. For this early iteration, there are also some conceptiual leaps that users will be expected to do inorder to interpret predicted shots; depending on context, you might need to come in with some extra weight (curling jargon for power / speed, in a sense) to knock another stone out, or you might want to gently rest your stone ontop of another. For such predictions, I'll have to consider another method of data collection that can estimate a weight paramter (such as tracking the frames of a curling match video), though this ability is out of my current skillset. 
 
