@@ -34,7 +34,7 @@ Instead of tracking the absolute posistion of the stones, it might be easier to 
 
 ## II. Train
 
-Train with TensorFlow or sklearn. 
+Trough a first round of tests, I was able to get an r^2 score of 0.222 when using lasso regression. I'll include more masks to improve this.
 
 ## III. UI
 
