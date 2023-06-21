@@ -47,12 +47,13 @@ Reason being: since im using shot by shot data, I'm really just looking at the s
 
 Solution:
 Since I capture the response to the board on the NEXT end, I can shift the X and Y columns up one.
+```
               =>            
 info x y              info x1 y1
 info x1 y1              info x2 y2
 info x2 y2              info x3 y3
 info x3 y3              info null null
-
+```
 This will result in the final shot of the final end not having a predicted best shot (which kind of makes sense, the game ended.)
 I'll have to add a white space row for this deletion.
 
