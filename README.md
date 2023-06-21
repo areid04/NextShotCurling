@@ -31,12 +31,20 @@ Instead of tracking the absolute posistion of the stones, it might be easier to 
 
 ![ZoneDiagram](https://github.com/areid04/NextShotCurling/assets/114508072/b421f611-d06d-42fb-b0af-93ff2f955cf6)
 
+I also updated the CV data retreveal process to ignore the thrown stone's posistion from the count (obviously I shouldnt include the thrown stone's posistion when determining the thrown stone!!). I have an idea to re-do this check by instead shifting stone X,y actual values up a row (for example, the "predicted" stone thrown for E1S1 would be the detected stone found at E1S2, and so on.)
+
+I'm wondering how feasible it would be to store data baased on the stone's color (such as g1r/y...)
+
+I'm also using some pretty poor data; I'm including the "ghost" posistions of stones that I really shouldn't be.
+
 
 ## II. Train
 
 Trough a first round of tests, I was able to get an r^2 score of 0.222 when using lasso regression. I'll include more masks to improve this.
+Update: I'm no longer using r^2 as a metric to score, instead using MAE. 
+Also, my attempt to create a regression model with tensorflow NN yeilds larger MAE than that of the Random Forest Regressor. Probably going to continue with this route rather than work with two models at the same time and choose a winner. As I get acsess to more shots, I'll try again in a later attempt.
 
 ## III. UI
 
-Helpful UI to help input data to be predicted and visualize this data.
+Helpful UI to help input data to be predicted and visualize this data. Probably going to do something like stamp/send.
 
