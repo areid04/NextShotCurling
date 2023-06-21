@@ -37,6 +37,20 @@ I'm wondering how feasible it would be to store data baased on the stone's color
 
 I'm also using some pretty poor data; I'm including the "ghost" posistions of stones that I really shouldn't be.
 
+6/20/23 10:13 Update:
+I figured out how to ignore the ghost stones (indicated by a hollow circle). I now have a more accurate representation of the stones on the board. I almost went back on this though when I realized that I shouldn't predict the x,y thrown stone cords from the board AFTER the stone was thrown in the firstplace!
+Reason being: since im using shot by shot data, I'm really just looking at the stone's posistions AFTER the stone was thrown, when I really want to have them BEFORE the stone was thrown. Hits, bumps, etc. didn't exist until the stone was thrown.
+
+Solution:
+Since I capture the response to the board on the NEXT end, I can shift the X and Y columns up one.
+              =>            
+info x y              info x1 y1
+info x1 y1              info x2 y2
+info x2 y2              info x3 y3
+info x3 y3              info null null
+
+This will result in the final shot of the final end not having a predicted best shot (which kind of makes sense, the game ended.)
+I'll have to add a white space row for this deletion.
 
 ## II. Train
 
