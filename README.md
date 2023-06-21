@@ -30,6 +30,8 @@ UPDATE:
 Instead of tracking the absolute posistion of the stones, it might be easier to track how many stones are in certain areas? This does track relative posistion, which could be useful data. It also doesn't matter which stone is where, but rather having some sort of count.
 
 ![ZoneDiagram](https://github.com/areid04/NextShotCurling/assets/114508072/b421f611-d06d-42fb-b0af-93ff2f955cf6)
+Below is the "more mask" version, following the same label priceple (without text, they're just too small.)
+![AOIpng](https://github.com/areid04/NextShotCurling/assets/114508072/0fc49bb5-ae1a-4c21-b986-7b2e3af58bf6)
 
 I also updated the CV data retreveal process to ignore the thrown stone's posistion from the count (obviously I shouldnt include the thrown stone's posistion when determining the thrown stone!!). I have an idea to re-do this check by instead shifting stone X,y actual values up a row (for example, the "predicted" stone thrown for E1S1 would be the detected stone found at E1S2, and so on.)
 
