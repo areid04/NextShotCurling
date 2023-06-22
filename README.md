@@ -63,7 +63,18 @@ Trough a first round of tests, I was able to get an r^2 score of 0.222 when usin
 Update: I'm no longer using r^2 as a metric to score, instead using MAE. 
 Also, my attempt to create a regression model with tensorflow NN yeilds larger MAE than that of the Random Forest Regressor. Probably going to continue with this route rather than work with two models at the same time and choose a winner. As I get acsess to more shots, I'll try again in a later attempt.
 
+Update 6/21/23 11:48 PM:
+It seems like my training has hit a plateu; MAE is 30 for x dimensions, and 60 for y dimensions. I think this is a good starting place for the project, espeically for developing a UI.
+
 ## III. UI
 
 Helpful UI to help input data to be predicted and visualize this data. Probably going to do something like stamp/send.
+
+Update 6/21/23/ 11:52 PM:
+And here it is! A quick proto of what the UI will look like is this:
+
+![20230621_234506](https://github.com/areid04/NextShotCurling/assets/114508072/e9716efa-b4ea-47ec-ad0c-5a5412f1692f)
+
+I'd like to keep things as simple and intuitive as possible; left click for red stones, right click for yellow stones (though the difference doesn't reflect in the model, might do that in a future update..) and enter to run the mask / retreaval function, to give a zone estimating where you should place your stone. I haven't yet exported any models for this function to work though, as I want to run through some more iterations to make a better estimator.
+
 
