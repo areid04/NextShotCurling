@@ -21,10 +21,10 @@ def getThrownCord(imgp):
             if M['m00'] != 0:
                 cx = int(M['m10'] / M['m00'])
                 cy = int(M['m01'] / M['m00'])
-                print('recognized at' + str(cx) + ' ' + str(cy))
-                cv2.imshow('roi', imgp)
-                cv2.waitKey(0)
-                cv2.drawContours(imgp, contour, -1, (0, 255, 0), 5)
+                #print('recognized at ' + str(cx) + ' ' + str(cy))
+                #cv2.imshow('roi', imgp)
+                #cv2.waitKey(0)
+                #cv2.drawContours(imgp, contour, -1, (0, 255, 0), 5)
                 break;
     sol = []
     sol.append(cx)
