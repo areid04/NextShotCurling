@@ -1,0 +1,35 @@
+import pandas as pd
+# Same cleaning that is readfile.
+def cleanup(df):
+    vars = df
+    vars['edgetop'] = vars['ei1'] + vars['ei2'] + vars['ei3'] + vars['ei4'] + vars['eo1'] + vars['eo2'] + vars['eo3'] + \
+                      vars['eo4'] + vars['ei5'] + vars['ei6'] + vars['ei7'] + vars['ei8'] + vars['eo6'] + vars['eo7'] + \
+                      vars['eo8']
+    vars['edgebot'] = vars['ei9'] + vars['ei10'] + vars['ei11'] + vars['ei12'] + vars['eo9'] + vars['eo10'] + vars[
+        'eo11'] + vars['eo12'] + vars['ei13'] + vars['ei14'] + vars['ei15'] + vars['ei16'] + vars['eo13'] + vars[
+                          'eo14'] + vars['eo15'] + vars['eo16']
+    vars['innertop'] = vars['i1'] + vars['i2'] + vars['i3'] + vars['i4'] + vars['i5'] + vars['i6'] + vars['i7'] + vars[
+        'i8']
+    vars['innerbot'] = vars['i9'] + vars['i10'] + vars['i11'] + vars['i12'] + vars['i13'] + vars['i14'] + vars['i15'] + \
+                       vars['i16']
+    vars['whitetop'] = vars['wi1'] + vars['wi2'] + vars['wi3'] + vars['wi4'] + vars['wo1'] + vars['wo2'] + vars['wo3'] + \
+                       vars['wo4'] + vars['wi5'] + vars['wi6'] + vars['wi7'] + vars['wi8'] + vars['wo6'] + vars['wo7'] + \
+                       vars['wo8']
+
+    vars['whitebot'] = vars['wi9'] + vars['wi10'] + vars['wi11'] + vars['wi12'] + vars['wo9'] + vars['wo10'] + vars[
+        'wo11'] + vars['wo12'] + vars['wi13'] + vars['wi14'] + vars['wi15'] + vars['wi16'] + vars['wo13'] + vars[
+                           'wo14'] + vars['wo15'] + vars['wo16']
+
+    vars['q1'] = vars['ei1'] + vars['ei2'] + vars['ei3'] + vars['ei4'] + vars['eo1'] + vars['eo2'] + vars['eo3'] + vars[
+        'eo4'] + vars['i1'] + vars['i2'] + vars['i3'] + vars['i4'] + vars['wi1'] + vars['wi2'] + vars['wi3'] + vars[
+                     'wi4'] + vars['wo1'] + vars['wo2'] + vars['wo3'] + vars['wo4']
+    vars['q2'] = vars['ei5'] + vars['ei6'] + vars['ei7'] + vars['ei8'] + vars['eo6'] + vars['eo7'] + vars['eo8'] + vars[
+        'i5'] + vars['i6'] + vars['i7'] + vars['i8'] + vars['wi5'] + vars['wi6'] + vars['wi7'] + vars['wi8'] + vars[
+                     'wo6'] + vars['wo7'] + vars['wo8']
+    vars['q3'] = vars['ei9'] + vars['ei10'] + vars['ei11'] + vars['ei12'] + vars['eo9'] + vars['eo10'] + vars['eo11'] + \
+                 vars['eo12'] + vars['i9'] + vars['i10'] + vars['i11'] + vars['i12'] + vars['wi9'] + vars['wi10'] + \
+                 vars['wi11'] + vars['wi12'] + vars['wo9'] + vars['wo10'] + vars['wo11'] + vars['wo12']
+    vars['q4'] = vars['ei13'] + vars['ei14'] + vars['ei15'] + vars['ei16'] + vars['eo13'] + vars['eo14'] + vars[
+        'eo15'] + vars['eo16'] + vars['wi13'] + vars['wi14'] + vars['wi15'] + vars['wi16'] + vars['wo13'] + vars[
+                     'wo14'] + vars['wo15'] + vars['wo16']
+    return vars

@@ -1,28 +1,40 @@
 import cv2
-
+import pandas as pd
+from joblib import load
 import cv2
-# create the estimator! tbm
+from guimask import bigfunc
+# This is a modified masking function, not from test_main module
+from cleanup import cleanup
+# load in the models for x cords and y-cords
+xmod = load('xmodel.joblib')
+ymod = load('ymodel.joblib')
+
 def showzone():
     global img
     overlay = img.copy()
-    cv2.ellipse(overlay, (150, 400),(33,60), 0,0,360, (0, 255, 0), -1)
+    playingfield = bigfunc(img) # using the computer vision function we created to get the stone locations.
+    playingfieldpd = pd.DataFrame([playingfield])
+    playingfield_cleaned = cleanup(playingfieldpd) # since we create theses features for the model, so must these be created.
+    xcord = xmod.predict(playingfield_cleaned)
+    print(xcord)
+    print(type(xcord))
+    xcord = xcord.astype('int')
+    ycord = ymod.predict(playingfield_cleaned)
+    print(ycord)
+    print(type(ycord))
+    ycord = ycord.astype('int')
+    cv2.ellipse(overlay, (xcord[0], ycord[0]),(33,60), 0,0,360, (0, 255, 0), -1)
     alpha = 0.4  # Transparency factor.
     img = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
 
-# click event function from stackoverflow;
+
 def click_event(event, x, y, flags, params):
     # checking for left mouse clicks
     if event == cv2.EVENT_LBUTTONDOWN:
         # displaying the coordinates
         # on the Shell
         print(x, ' ', y)
-
-        # displaying the coordinates
-        # on the image window
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(img, str(x) + ',' +
-                    str(y), (x, y), font,
-                    1, (255, 0, 0), 2)
+        # Red Stones
         cv2.circle(img, (x, y), 9, (0, 0, 0), -1)
         cv2.circle(img, (x,y), 8, (0,0,255), -1)
 
@@ -31,17 +43,7 @@ def click_event(event, x, y, flags, params):
         # displaying the coordinates
         # on the Shell
         print(x, ' ', y)
-
-        # displaying the coordinates
-        # on the image window
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        b = img[y, x, 0]
-        g = img[y, x, 1]
-        r = img[y, x, 2]
-        cv2.putText(img, str(b) + ',' +
-                    str(g) + ',' + str(r),
-                    (x, y), font, 1,
-                    (255, 255, 0), 2)
+        # Yellow stones
         cv2.circle(img, (x, y), 9, (0, 0, 0), -1)
         cv2.circle(img, (x, y), 8, (0, 192, 255), -1)
 
@@ -53,8 +55,8 @@ while(1):
     cv2.imshow('nextshotcurl', img)
     k = cv2.waitKey(1) & 0xFF
     if k == 13:
-        print('yo!')
+        print('Showing Results')
         showzone()
-    if k == 27:
+    if k == 27: # esc key
         break
 cv2.destroyAllWindows()
