@@ -68,13 +68,13 @@ It seems like my training has hit a plateu; MAE is 30 for x dimensions, and 60 f
 
 ## III. UI
 
-Helpful UI to help input data to be predicted and visualize this data. Probably going to do something like stamp/send.
+Helpful UI to help input data to be predicted and visualize this data.
 
-Update 6/21/23/ 11:52 PM:
-And here it is! A quick proto of what the UI will look like is this:
+![image](https://github.com/areid04/NextShotCurling/assets/114508072/b04371a9-0532-4a5f-a2af-2c7c4cc91168)
 
-![20230621_234506](https://github.com/areid04/NextShotCurling/assets/114508072/e9716efa-b4ea-47ec-ad0c-5a5412f1692f)
 
-I'd like to keep things as simple and intuitive as possible; left click for red stones, right click for yellow stones (though the difference doesn't reflect in the model, might do that in a future update..) and enter to run the mask / retreaval function, to give a zone estimating where you should place your stone. I haven't yet exported any models for this function to work though, as I want to run through some more iterations to make a better estimator.
+I'd like to keep things as simple and intuitive as possible; left click for red stones, right click for yellow stones (though the difference doesn't reflect in the model, might do that in a future update..), and enter to run the mask / retrieval function, to give a zone estimating where you should place your stone.
+
+Some next steps would be including takeouts and hits as part of the data set!
 
 
