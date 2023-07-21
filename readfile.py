@@ -1,13 +1,11 @@
 from joblib import dump, load
 import random
 import numpy as np
-import tensorflow as tf
 random.seed(42)
 np.random.seed(42)
-tf.random.set_seed(42)
 import pandas as pd
 
-stra = r'C:\Users\alexr\PycharmProjects\NextShotCurling\outputupd3back.xlsx'
+stra = r'C:\Users\alexr\OneDrive\Documents\GitHub\NextShotCurling\outputupd3back.xlsx'
 df = pd.read_excel(stra)
 print(len(df))
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
