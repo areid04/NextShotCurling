@@ -21,14 +21,14 @@ def stream(match_id,szn):
         for j in range(1,17):
             url = 'https://world-curling-federation.s3-eu-west-1.amazonaws.com/shot-images/CUR_'+str(szn)+'_WMCC/'+str(match_id) + '/shot-image-E' + str(i)+ 'S' + str(j) +'.jpg'
             data = requests.get(url).content
-            f = open('img.jpg', 'wb')
+            f = open('BackupData/img.jpg', 'wb')
             f.write(data)
             f.close()
             if (i % 2 == 1): # Odd games need the board to be flipped
                 val =True
             else:
                 val = False
-            shot_dict = bigfunc('img.jpg', val)
+            shot_dict = bigfunc('BackupData/img.jpg', val)
             hold = pd.DataFrame([shot_dict])
             hold['refid'] = 'E' + str(i) + 'S'+ str(j)
             main_frame = pd.concat([main_frame,hold],ignore_index=True)
