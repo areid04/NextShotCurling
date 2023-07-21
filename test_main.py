@@ -1,9 +1,6 @@
 import cv2
 import os
-import itertools
 import numpy as np
-import pandas as pd
-import imutils
 from getThrownPos import getThrownCord
 folder_to_view = 'images'
 mask_folder = 'tostore'
@@ -20,16 +17,11 @@ def bigfunc(file, toflip):
     'i1':0,'i2':0,'i3':0,'i4':0,'i5':0,'i6':0,'i7':0,'i8':0,'i9':0,'i10':0,'i11':0,'i12':0,'i13':0,'i14':0,'i15':0,'i16':0,
     'bl':0,'br':0,
     'c':0}
-    #print(os.listdir(mask_folder))
-    row_list = []
     img = cv2.imread(file)
     imgp = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
     if (toflip == True):
         img = cv2.rotate(img, cv2.ROTATE_180)
         imgp = cv2.rotate(imgp, cv2.ROTATE_180)
-    #cv2.imshow('roi', img)
-    #cv2.imshow('roi', imgp)
-    #cv2.waitKey(0)
     xylist = getThrownCord(imgp)
     throw_dict['thrownx'] = xylist[0] #x
     throw_dict['throwny'] = xylist[1] #y

@@ -1,3 +1,4 @@
+from joblib import dump, load
 import random
 import numpy as np
 import tensorflow as tf
@@ -5,31 +6,23 @@ random.seed(42)
 np.random.seed(42)
 tf.random.set_seed(42)
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.linear_model import LogisticRegression
 
 stra = r'C:\Users\alexr\PycharmProjects\NextShotCurling\outputupd3back.xlsx'
 df = pd.read_excel(stra)
 print(len(df))
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import  Lasso
-from sklearn.pipeline import  make_pipeline
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import GradientBoostingRegressor
-from xgboost import XGBRegressor
-from sklearn.ensemble import AdaBoostRegressor
+# Cleaning the data!
 df = df.dropna()
 df = df.drop('refid',axis=1)
+# Get rid of outliers in the data set, and occasions where the thrown stone was out of play.
 df = df[df['thrownx'] != 0]
 df = df[(df['thrownx'] != 148) & (df['throwny'] != (588))]
 df = df[(df['thrownx'] != 148) & (df['throwny'] != (589))]
 df = df[(df['thrownx'] != 149) & (df['throwny'] != (588))]
 df = df[(df['thrownx'] != 149) & (df['throwny'] != (589))]
+# Rounding the dataset, such granularity is not helpful in our case.
 df['thrownx'] = 10 * round(df['thrownx'] / 10)
 df['throwny'] = 10 * round(df['throwny'] / 10)
 df = df[df['thrownx'] < 280]
@@ -37,8 +30,10 @@ df = df[df['thrownx'] > 20]
 df = df[df['throwny'] > 100]
 df = df[df['throwny'] < 560]
 print(len(df))
+# Creating the feature datasets.
 vars = df.drop('thrownx', axis=1)
 vars = vars.drop('throwny', axis=1)
+# Making features that incorporate a zoning methodology. Lead to better results!
 vars['edgetop'] = vars['ei1']+vars['ei2']+vars['ei3']+vars['ei4']+vars['eo1']+vars['eo2']+vars['eo3']+vars['eo4']+vars['ei5']+vars['ei6']+vars['ei7']+vars['ei8']+vars['eo6']+vars['eo7']+vars['eo8']
 vars['edgebot'] = vars['ei9']+vars['ei10']+vars['ei11']+vars['ei12']+vars['eo9']+vars['eo10']+vars['eo11']+vars['eo12']+vars['ei13']+vars['ei14']+vars['ei15']+vars['ei16']+vars['eo13']+vars['eo14']+vars['eo15']+vars['eo16']
 vars['innertop'] =vars['i1']+vars['i2']+vars['i3']+vars['i4']+vars['i5']+vars['i6']+vars['i7']+vars['i8']
@@ -64,8 +59,8 @@ print("Mean absolute error: %.2f" % mean_absolute_error(y_test, y_pred))
 # The coefficient of determination: 1 is perfect prediction
 print("Score: " + str(lr.score(X_test, y_test)))
 print(r2_score(y_test,y_pred))
-
 print(lr.predict(vars.iloc[[2]]))
+
 # training the y-cord
 X_trainy, X_testy, y_trainy, y_testy = train_test_split(vars, df['throwny'], test_size=0.25, random_state=42)
 from sklearn.preprocessing import StandardScaler
@@ -79,5 +74,7 @@ print("Mean absolute error: %.2f" % mean_absolute_error(y_testy, y_predy))
 # The coefficient of determination: 1 is perfect prediction
 print("Score: " + str(lry.score(X_testy, y_testy)))
 print(r2_score(y_testy,y_predy))
-
 print(lry.predict(vars.iloc[[2]]))
+
+dump(lr, 'xmodel.joblib')
+dump(lry, 'ymodel.joblib')
